@@ -3,29 +3,36 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { useNavigation } from '@react-navigation/native';
 
 const App = () => {
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
   const handleLogin = () => {
     // Navigate to Home screen
-    navigation.navigate("Home")
+    navigation.navigate('Home');
   };
-
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> Login Form</Text>
-      <TextInput style={styles.input} placeholder='Email'/>
-      <TextInput 
-      style={styles.input} 
-      placeholder='password'
-      secureTextEntry
+      <Text style={styles.title}>Login</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
-      <TouchableOpacity onPress={handleLogin}
-      style={styles.button}>
-        <Text style={styles.buttonText}>
-          Login
-          </Text></TouchableOpacity>
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -35,39 +42,38 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF'
-  },
-  input: {
-    width: '60%',
-    height: '70',
-    backgroundColor: '#ccc',
-    borderColor: '#FFFFFF',
-    borderWidth: 2,
-    borderRadius: 100,
-    paddingHorizontal: 20,
-    marginBottom: '5'
+    backgroundColor: '#f5f5f5',
+    padding: 16,
   },
   title: {
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: 'bold',
-    color: '#234463',
-    marginBottom: '15'
+    marginBottom: 24,
+    color: '#333',
   },
-  buttonText: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#046332',
+  input: {
+    width: '80%',
+    height: 50,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 16,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
   },
   button: {
     width: '80%',
     height: 50,
-    backgroundColor: '#007bff',
+    backgroundColor: '#007BFF',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 50,
-  }
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
-
-
 
 export default App;
